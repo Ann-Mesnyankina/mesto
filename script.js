@@ -21,8 +21,8 @@ function closeForm(){
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
-    profileTitleElement.textContent = `${inputName.value}`;
-    profileSubtitleElement.textContent = `${inputAbout.value}`;
+    profileTitleElement.textContent = inputName.value;
+    profileSubtitleElement.textContent = inputAbout.value;
     closeForm ();
 }
 
