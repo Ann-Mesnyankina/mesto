@@ -7,7 +7,7 @@
 @import url(../blocks/profile/__item/profile__item.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
-@import url(../blocks/profile/__title/profile__title-item.css);
+@import url(../blocks/profile/__title-item/profile__title-item.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
@@ -22,10 +22,11 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__opened/popup__opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__profile-form/popup__profile-form.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__save-button/popup__save-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
+

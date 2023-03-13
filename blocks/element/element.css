@@ -10,6 +10,14 @@
    justify-content: center;
    
 }
+
+@media screen and (max-width: 878px) {
+    .element {
+            padding-top: 36px;
+            grid-template-columns: repeat(2, 282px);
+        }
+}
+
 @media screen and (max-width: 650px) {
     .element {
             padding-top: 36px;

@@ -1,6 +1,8 @@
 .profile__info{
-    height: 100%;
     padding-top: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }
 @media screen and (max-width: 550px) {
     .profile__info{

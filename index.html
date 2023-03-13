@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
-    <link rel="stylesheet" href="./vendor/fonts/font.css" />
-    <link rel="stylesheet" href="./vendor/normalize.css" />
-
     <title>Место</title>
 </head>
 
@@ -16,20 +13,21 @@
     <header class="header">
         <div class="header__logo"></div>
     </header>
-    <section class="profile">
-        <div class="profile__item">
-            <img class="profile__avatar" src="./image/image.jpg" alt="Мужчина в шапке" />
-            <div class="profile__info">
-                <div class="profile__title-item">
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button" type="button"></button>
-                </div>
-                <p class="profile__subtitle">Исследователь океана</p>
-            </div>
-        </div>
-        <button class="profile__add-button" type="button"></button>
-    </section>
     <main class="content">
+        <section class="profile">
+            <div class="profile__item">
+                <img class="profile__avatar" src="./image/image.jpg" alt="Мужчина в шапке" />
+                <div class="profile__info">
+                    <div class="profile__title-item">
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button class="profile__edit-button" type="button"></button>
+                    </div>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
+            </div>
+            <button class="profile__add-button" type="button"></button>
+        </section>
+
         <section class="elements">
             <ul class="element">
                 <li class="element__item">
@@ -84,7 +82,7 @@
     <section class="popup">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__profile-form">
+            <form class="popup__profile-form" name="profile-form">
                 <input type="text" class="popup__input popup__input_type_name" name="username" placeholder="Имя"
                     value="" required>
                 <input type="text" class="popup__input popup__input_type_about" name="proffesion" placeholder="О себе"
@@ -94,7 +92,7 @@
             <button class="popup__close-button" type="button"></button>
         </div>
     </section>
-    <script src="./script.js"></script>
+    <script src="./index.js/inex.js"></script>
 </body>
 
 </html>

@@ -9,14 +9,14 @@ let profileTitleElement = document.querySelector(".profile__title");
 let profileSubtitleElement = document.querySelector(".profile__subtitle");
 
  function openForm(){
-    popupElement.classList.add("popup__opened"); 
+    popupElement.classList.add("popup_opened"); 
     inputName.value = profileTitleElement.textContent;
     inputAbout.value = profileSubtitleElement.textContent;
    
 }
 
 function closeForm(){
-    popupElement.classList.remove("popup__opened"); 
+    popupElement.classList.remove("popup_opened"); 
 }
 
 function handleFormSubmit (evt) {
