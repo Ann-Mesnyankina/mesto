@@ -1,5 +1,5 @@
 ## Проект Место (mesto)
-### *Ссылка на сайт* https://github.com/Ann-Mesnyankina/mesto.git
+### *Ссылка на сайт* https://ann-mesnyankina.github.io/mesto/
 ## *Описание*
 
   * ###  Учебный типовой одностраничный сайт на тему: "Место".
