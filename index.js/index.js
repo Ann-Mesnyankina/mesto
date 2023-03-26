@@ -1,5 +1,4 @@
 
-const popupAll = document.querySelector(".popup");
 const popupProfile = document.querySelector('.popup_add-profile');
 const popupImage = document.querySelector('.popup_add-image');
 const popupImageContainer = document.querySelector('.popup_open-image');
@@ -16,13 +15,13 @@ const inputLink = document.querySelector('.popup__input_type_link');
 const inputName = document.querySelector(".popup__input_type_name");
 const inputAbout = document.querySelector(".popup__input_type_about");
 
-const editProfile = document.querySelector(".popup__profile-form");
+const profileEdit = document.querySelector(".popup__profile-form");
 const profileTitleElement = document.querySelector(".profile__title");
 const profileSubtitleElement = document.querySelector(".profile__subtitle");
 
 /*открытие попап*/
-const openPopup = function (popupAll) {
-    popupAll.classList.add("popup_opened");
+const openPopup = function (popup) {
+    popup.classList.add("popup_opened");
 }
 
 function openProfile() {
@@ -44,8 +43,8 @@ function openImage() {
 
 
 /*зыкрытие попап*/
-const closePopup = function (popupAll) {
-    popupAll.classList.remove("popup_opened");
+const closePopup = function (popup) {
+    popup.classList.remove("popup_opened");
 }
 function closeProfile() {
     closePopup(popupProfile);
@@ -72,7 +71,7 @@ function handleFormSubmitProfile(evt) {
     profileSubtitleElement.textContent = inputAbout.value;
     closeProfile();
 }
-editProfile.addEventListener('submit', handleFormSubmitProfile);
+profileEdit.addEventListener('submit', handleFormSubmitProfile);
 
 
 const initialCards = [
