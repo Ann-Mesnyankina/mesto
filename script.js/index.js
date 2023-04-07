@@ -19,13 +19,24 @@ const profileEdit = document.querySelector(".popup__profile-form");
 const profileTitleElement = document.querySelector(".profile__title");
 const profileSubtitleElement = document.querySelector(".profile__subtitle");
 
+const buttonSubmitResetError = popupImage.querySelector('.popup__save-button');
+const inputListResetError = popupImage.querySelectorAll('.popup__input')
+
 /*открытие попап*/
 const openPopup = function (popup) {
     popup.classList.add("popup_opened");
+    document.addEventListener('keydown', closePopupEsc);
+    document.addEventListener('mousedown', closePopupOverlay);
+
+
+
+
+
 }
 
 function openProfile() {
     openPopup(popupProfile);
+    resetErrorFormOpened(profileEdit);
     inputName.value = profileTitleElement.textContent;
     inputAbout.value = profileSubtitleElement.textContent;
 }
@@ -34,6 +45,9 @@ popupOpenProfile.addEventListener('click', openProfile);
 
 function openAddImage() {
     openPopup(popupImage);
+    resetErrorFormOpened(popupImage);
+    checkSubmitButtonState(inputListResetError, buttonSubmitResetError, configValidation.inactiveButtonClass);
+
 }
 popupAddImage.addEventListener('click', openAddImage);
 
@@ -45,6 +59,9 @@ function openImage() {
 /*зыкрытие попап*/
 const closePopup = function (popup) {
     popup.classList.remove("popup_opened");
+    document.removeEventListener('keydown', closePopupEsc);
+    document.removeEventListener('mousedown', closePopupOverlay);
+
 }
 function closeProfile() {
     closePopup(popupProfile);
@@ -59,9 +76,27 @@ function closeImageContainer() {
 }
 
 document.querySelectorAll('.popup__close-button').forEach(button => {
-    const buttonsPopupClose = button.closest('.popup'); 
-    button.addEventListener('click', () => closePopup(buttonsPopupClose)); 
-  });  
+    const buttonsPopupClose = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(buttonsPopupClose));
+});
+
+
+/*закрытие по esc*/
+function closePopupEsc(evt) {
+    const popupOpened = document.querySelector('.popup_opened');
+    if (evt.key === 'Escape') {
+        closePopup(popupOpened);
+    }
+};
+
+/*закрытие по фону*/
+function closePopupOverlay(evt) {
+    const popupOpened = document.querySelector('.popup_opened');
+    if (evt.target === popupOpened) {
+        closePopup(popupOpened);
+    }
+};
+
 
 
 /*обработчик события сохранить*/
@@ -72,6 +107,10 @@ function handleFormSubmitProfile(evt) {
     closeProfile();
 }
 profileEdit.addEventListener('submit', handleFormSubmitProfile);
+
+
+
+
 
 
 const initialCards = [
@@ -143,7 +182,7 @@ initialCards.forEach(function (item) {
 
 /*вставить карточку*/
 function handleCardEdit(evt) {
-    evt.preventDefault();    
+    evt.preventDefault();
     const card = { name: inputTitle.value, link: inputLink.value };
     const newCard = creatCard(card);
     elementCard.prepend(newCard);
@@ -160,7 +199,7 @@ function handleCardDelete(event) {
 };
 
 function addlIkeEventListener(event) {
- event.target.classList.toggle('element__like-button_active');
+    event.target.classList.toggle('element__like-button_active');
 }
 
 /*слушатели*/
@@ -168,6 +207,7 @@ function setEventListeners(cardElement) {
     cardElement.querySelector('.element__remove-button').addEventListener('click', handleCardDelete);
     cardElement.querySelector('.element__like-button').addEventListener('click', addlIkeEventListener);
 }
+
 
 
 
