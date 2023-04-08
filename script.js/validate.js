@@ -75,11 +75,11 @@ const inValidityButton = (inputList, buttonForm, inactiveButtonClass) => {
 
 
 
-function resetErrorFormOpened(formElem) {
+function resetErrorFormOpened(formElem,configValidation) {
     formElem.querySelectorAll(configValidation.inputSelector).forEach((inputElem) => {
         const errorText = document.querySelector(`#${inputElem.id}-error`);
         if (!inputElem.validity.valid) {
-            hideError(inputElem, errorText, configValidation.errorClass, configValidation.inputErrorClass)
+            hideError(inputElem, errorText,configValidation.errorClass,configValidation.inputErrorClass)
          }
     })
 }

@@ -27,16 +27,11 @@ const openPopup = function (popup) {
     popup.classList.add("popup_opened");
     document.addEventListener('keydown', closePopupEsc);
     document.addEventListener('mousedown', closePopupOverlay);
-
-
-
-
-
 }
 
 function openProfile() {
     openPopup(popupProfile);
-    resetErrorFormOpened(profileEdit);
+    resetErrorFormOpened(profileEdit, configValidation);
     inputName.value = profileTitleElement.textContent;
     inputAbout.value = profileSubtitleElement.textContent;
 }
@@ -45,7 +40,7 @@ popupOpenProfile.addEventListener('click', openProfile);
 
 function openAddImage() {
     openPopup(popupImage);
-    resetErrorFormOpened(popupImage);
+    resetErrorFormOpened(popupImage, configValidation);
     checkSubmitButtonState(inputListResetError, buttonSubmitResetError, configValidation.inactiveButtonClass);
 
 }
@@ -83,10 +78,12 @@ document.querySelectorAll('.popup__close-button').forEach(button => {
 
 /*закрытие по esc*/
 function closePopupEsc(evt) {
-    const popupOpened = document.querySelector('.popup_opened');
     if (evt.key === 'Escape') {
+        const popupOpened = document.querySelector('.popup_opened');
         closePopup(popupOpened);
+
     }
+
 };
 
 /*закрытие по фону*/
