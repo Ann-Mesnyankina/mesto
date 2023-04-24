@@ -60,7 +60,7 @@ export class FormValidator {
         this._inputList.forEach((inputElem) => {
             inputElem.addEventListener('input', () => {
                 this._inputElem = inputElem;
-                this._checkInputValidity(inputElem);
+                this._checkInputValidity();
                 this._checkSubmitButtonState();
             })
         })

@@ -157,7 +157,6 @@ cardProfileForm.addEventListener('submit', handleCardEdit);
 const formElemProfile = popupProfile.querySelector('.popup__profile-form');
 const formValidatorProfile = new FormValidator(formElemProfile,configValidation);
 formValidatorProfile.enableValidation();
-console.log(formValidatorProfile)
 
 const formElemAddCard = popupImage.querySelector('.popup__profile-form');
 const formValidatorAddCard = new FormValidator(formElemAddCard,configValidation);
