@@ -12,7 +12,6 @@ export class FormValidator {
     }
     enableValidation() {
         this._kitEventListeners();
-
     }
     _showError() {
         this._inputElem.classList.add(this._inputErrorClass);

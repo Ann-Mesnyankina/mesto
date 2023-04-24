@@ -134,18 +134,26 @@ profileEdit.addEventListener('submit', handleFormSubmitProfile);
 /*создание экземпляра карточки*/
 function creatCard(item){
     const card = new Card(item, templateSelector, openImage);
-    elementCard.prepend(card.generateCard());    
+    const cardElement = card.generateCard();
+    return cardElement  
+}
+
+function appendCard(box,card){
+    box.prepend(card);
 }
 
 /*отрисовка массива карточек*/
-initialCards.forEach (function (item){
-     creatCard(item);
+initialCards.forEach (item => {
+    appendCard(elementCard, creatCard(item));
 });
+
 
 /*вставить карточку из формы*/
 function handleCardEdit(evt) {
     evt.preventDefault();
-    creatCard({name:inputTitle.value,link:inputLink.value});    
+    const cardElement = ({name:inputTitle.value,link:inputLink.value}); 
+    const card = new Card(cardElement, templateSelector, openImage); 
+    appendCard(elementCard, card.generateCard()); 
     evt.target.reset();
     closeImage();
 }
