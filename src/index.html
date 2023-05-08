@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+
     <title>Место</title>
 </head>
 
@@ -16,7 +16,7 @@
     <main class="content">
         <section class="profile">
             <div class="profile__item">
-                <img class="profile__avatar" src="./image/image.jpg" alt="Мужчина в шапке" />
+                <img class="profile__avatar" src = "./image/image.jpg" alt="Мужчина в шапке" />
                 <div class="profile__info">
                     <div class="profile__title-item">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -56,7 +56,7 @@
         <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__profile-form" id="profile-add-image" name="profile-form" novalidate >
-                <input type="text" class="popup__input popup__input_type_title" name="title" id="title" placeholder="Название"
+                <input type="text" class="popup__input popup__input_type_title" name="name" id="title" placeholder="Название"
                     minlength="2" maxlength="30" required>
                     <span class="popup__error" id="title-error"></span>
                 <input type="url" class="popup__input popup__input_type_link" name="link" id="link"
@@ -88,7 +88,7 @@
             </li>
         </ul>
     </template>
-    <script type = "module" src="./script.js/index.js"></script> 
+  
 </body>
 
 </html>
