@@ -5,7 +5,7 @@ export class Section{
     this._container = document.querySelector(containerSelector);
     }
     
-   creatDataArray(){
+    renderItems(){
     this._initialCards.forEach (item => {
        this.addItem(item);
     })}

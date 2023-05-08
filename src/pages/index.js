@@ -1,4 +1,6 @@
 
+import css from '../pages/index.css';
+import image from '../image/image.jpg';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -21,20 +23,11 @@ import {
     popupOpenProfile
 } from '../utils/constants.js';
 
-import image from '../image/image.jpg';
-const whoIsTheGoat = [
-    // меняем исходные пути на переменные
-    { name: 'image', image: image },
-  ]; 
-
-  import css from '../pages/index.css';
-
 /*Экземпляры*/
 const userInfo = new UserInfo(configProfile);
 
 const popupWithImage = new PopupWithImage(popupImageSelector);
-popupWithImage.setEventListeners()
-
+popupWithImage.setEventListeners();
 
 const section = new Section({
     items: initialCards, renderer: (item) => {
@@ -43,18 +36,17 @@ const section = new Section({
     }
 }, cardListSelector)
 
-section.creatDataArray();
+section.renderItems();
 
-
-const popupWithForm = new PopupWithForm(popupProfileSelector, (item) => {
+const popupEditProfile = new PopupWithForm(popupProfileSelector, (item) => {
     userInfo.setUserInfo(item);
 });
-popupWithForm.setEventListeners();
+popupEditProfile.setEventListeners();
 
-const popupWithFormCard = new PopupWithForm(popupCardSelector, (item) => {
+const popupAddCard = new PopupWithForm(popupCardSelector, (item) => {
     section.addItem(item);
 })
-popupWithFormCard.setEventListeners();
+popupAddCard.setEventListeners();
 
 /*Валидация*/
 /*запуск валидации*/
@@ -66,18 +58,17 @@ const formElemAddCard = popupImage.querySelector('.popup__profile-form');
 const formValidatorAddCard = new FormValidator(formElemAddCard, configValidation);
 formValidatorAddCard.enableValidation();
 
-
 /*открытие попап профиля*/
 function openProfile() {
-    popupWithForm.open();
-    popupWithForm.setUserValue(userInfo.getUserInfo())
+    popupEditProfile.open();
+    popupEditProfile.setUserValue(userInfo.getUserInfo())
     formValidatorProfile.resetErrorFormOpened();
 }
 popupOpenProfile.addEventListener('click', openProfile);
 
 /*открытие попап карточки*/
 function openAddImage() {
-    popupWithFormCard.open();
+    popupAddCard.open();
     formValidatorAddCard.resetErrorFormOpened();
     formElemAddCard.reset();
 }
