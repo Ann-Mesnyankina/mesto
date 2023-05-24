@@ -16,13 +16,15 @@
     <main class="content">
         <section class="profile">
             <div class="profile__item">
-                <img class="profile__avatar" src = "./image/image.jpg" alt="Мужчина в шапке" />
+                <button class="profile__avatar-button" type="button">
+                    <img class="profile__avatar" src="#" alt="Мужчина в шапке" />
+                </button>
                 <div class="profile__info">
                     <div class="profile__title-item">
-                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <h1 class="profile__title"></h1>
                         <button class="profile__edit-button" type="button"></button>
                     </div>
-                    <p class="profile__subtitle">Исследователь океана</p>
+                    <p class="profile__subtitle"></p>
                 </div>
             </div>
             <button class="profile__add-button" type="button"></button>
@@ -41,12 +43,12 @@
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__profile-form" name="profile-form" novalidate>
-                <input type="text" class="popup__input popup__input_type_name" name="username" id="name" placeholder="Имя"
-                     minlength="2" maxlength="40" required>
-                     <span class="popup__error" id="name-error"></span>
-                <input type="text" class="popup__input popup__input_type_about" name="proffesion" id="proffesion" placeholder="О себе"
-                    minlength="2" maxlength="200" required>
-                    <span class="popup__error" id="proffesion-error"></span>
+                <input type="text" class="popup__input popup__input_type_name" name="username" id="name"
+                    placeholder="Имя" minlength="2" maxlength="40" required>
+                <span class="popup__error" id="name-error"></span>
+                <input type="text" class="popup__input popup__input_type_about" name="proffesion" id="proffesion"
+                    placeholder="О себе" minlength="2" maxlength="200" required>
+                <span class="popup__error" id="proffesion-error"></span>
                 <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
             <button class="popup__close-button" type="button"></button>
@@ -55,16 +57,16 @@
     <section class="popup popup_add-image" id="add-images">
         <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
-            <form class="popup__profile-form" id="profile-add-image" name="profile-form" novalidate >
-                <input type="text" class="popup__input popup__input_type_title" name="name" id="title" placeholder="Название"
-                    minlength="2" maxlength="30" required>
-                    <span class="popup__error" id="title-error"></span>
+            <form class="popup__profile-form" id="profile-add-image" name="profile-form" novalidate>
+                <input type="text" class="popup__input popup__input_type_title" name="name" id="title"
+                    placeholder="Название" minlength="2" maxlength="30" required>
+                <span class="popup__error" id="title-error"></span>
                 <input type="url" class="popup__input popup__input_type_link" name="link" id="link"
-                    placeholder="Ссылка на картинку"  required>
-                    <span class="popup__error" id="link-error"></span>
-                <button class="popup__save-button" type="submit" id="dublicate-card" >Создать</button>
+                    placeholder="Ссылка на картинку" required>
+                <span class="popup__error" id="link-error"></span>
+                <button class="popup__save-button" type="submit" id="dublicate-card">Создать</button>
             </form>
-            <button class="popup__close-button" id="close-profile-addimage"  type="button"></button>
+            <button class="popup__close-button" id="close-profile-addimage" type="button"></button>
         </div>
     </section>
     <section class="popup popup_open-image" id="images">
@@ -76,6 +78,27 @@
             </figure>
         </div>
     </section>
+    <section class="popup popup_add-avatar" id="add-avatar">
+        <div class="popup__container">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form class="popup__profile-form" id="profile-add-avatar" name="profile-form-avatar" novalidate>
+                <input type="url" class="popup__input popup__input_type_link" name="avatar" id="avatar"
+                    placeholder="Ссылка на картинку" required>
+                <span class="popup__error" id="avatar-error"></span>
+                <button class="popup__save-button" type="submit" id="edit-avatar">Сохранить</button>
+            </form>
+            <button class="popup__close-button" id="close-profile-addavatar" type="button"></button>
+        </div>
+    </section>
+    <section class="popup popup_delete-card" id="delete-card">
+        <div class="popup__container">
+            <h2 class="popup__title popup__title_type_delete">Вы уверены?</h2>
+            <form class="popup__profile-form" id="profile-delete-card" name="delete-card" novalidate>
+            <button class="popup__save-button" type="submit" id="dublicate-card">Да</button>
+            </form>
+            <button class="popup__close-button" id="close-profile-deletecard" type="button"></button>
+        </div>
+    </section>
     <template class="template">
         <ul class="element">
             <li class="element__item">
@@ -83,12 +106,15 @@
                 <img src="#" alt="шаблон картинки" class="element__image">
                 <div class="element__container">
                     <h3 class="element__title"></h3>
+                    <div class="element__like-conteiner">
                     <button class="element__like-button" type="button"></button>
+                    <span class="element__like-count"></span>
+                </div>
                 </div>
             </li>
         </ul>
     </template>
-  
+
 </body>
 
 </html>

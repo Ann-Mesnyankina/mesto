@@ -7,8 +7,8 @@ export class FormValidator {
         this._inputErrorClass = setting._inputErrorClass;
         this._errorClass = setting.errorClass;
         this._formElem = formElem;
-        this._inputList = Array.from(formElem.querySelectorAll(this._inputSelector));
         this._buttonForm = formElem.querySelector(this._submitButtonSelector);
+        this._inputList = Array.from(formElem.querySelectorAll(this._inputSelector));
     }
     enableValidation() {
         this._kitEventListeners();
@@ -64,7 +64,7 @@ export class FormValidator {
             })
         })
     }
-    resetErrorFormOpened() {
+    resetErrorFormOpened = () => {
         this._inputList.forEach(inputElem => {
             this._inputElem = inputElem;
             this._errorContainer = this._formElem.querySelector(`#${this._inputElem.id}-error`);
