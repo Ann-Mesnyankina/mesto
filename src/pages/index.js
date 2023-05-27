@@ -27,6 +27,8 @@ import {
     popupDeleteSelector
 } from '../utils/constants.js';
 
+//let userId;
+
 /*Экземпляры*/
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
@@ -58,23 +60,26 @@ function creatCard(data) {
                 .catch((error => console.error(`Не получилось удалить карточку ${error}`)))
         }
         )
-    }, (likeEl, cardId) => {
-        if (!likeEl.classList.contains('element__like-button_active')) {
+    }, (isLiked, cardId) => {
+        if (!isLiked) { 
+            console.log(isLiked)           
             api.addLike(cardId)
-                .then(res => {
+                .then(res => {                    
                     card.setLikes(res.likes)
                 })
                 .catch((error => console.error(`Не получилось добавить лайк ${error}`)))
         } else {
             api.deleteLike(cardId)
                 .then(res => {
+                    console.log(res)
                     card.setLikes(res.likes)
                 })
                 .catch((error => console.error(`Не получилось удалить лайк ${error}`)))
-        }
-    });
-    return card.generateCard();
+        }        
+    }); 
+    return card.generateCard(); 
 }
+
 
 const section = new Section((item) => {
     section.addItem(creatCard(item))
@@ -92,9 +97,9 @@ const popupEditProfile = new PopupWithForm(popupProfileSelector, (data) => {
 popupEditProfile.setEventListeners();
 
 const popupAddCard = new PopupWithForm(popupCardSelector, (data) => {
-    Promise.all([api.addNewCard(data), api.getInfoUser()])
-        .then(([infoCard, infoUser]) => {
-            infoCard.myId = infoUser._id
+    api.addNewCard(data)
+        .then((infoCard) => {
+            infoCard.myId = userInfo.getId()
             section.addItem(creatCard(infoCard));
             popupAddCard.close()
         })
@@ -110,6 +115,7 @@ const popupAddAvatar = new PopupWithForm(popupAvatarSelector, (data) => {
             popupAddAvatar.close()
         })
         .catch((error => console.error(`Ошибка при обновлении аватара ${error}`)))
+        .finally(() => popupAddAvatar.setDefaultText())
 })
 popupAddAvatar.setEventListeners();
 /*Валидация*/
@@ -126,7 +132,6 @@ const formElemAddAvatar = popupProfileAvatar.querySelector('.popup__profile-form
 const formValidatorAddAvatar = new FormValidator(formElemAddAvatar, configValidation);
 formValidatorAddAvatar.enableValidation();
 
-
 /*открытие попап профиля*/
 function openProfile() {
     popupEditProfile.open();
@@ -139,7 +144,6 @@ popupOpenProfile.addEventListener('click', openProfile);
 function openAddImage() {
     popupAddCard.open();
     formValidatorAddCard.resetErrorFormOpened();
-    formElemAddCard.reset();
 }
 popupAddImage.addEventListener('click', openAddImage);
 
@@ -153,6 +157,8 @@ Promise.all([api.getInitialCards(), api.getInfoUser()])
     .then(([infoCard, infoUser]) => {
         infoCard.forEach(item => { item.myId = infoUser._id });
         userInfo.setUserInfo({ username: infoUser.name, proffesion: infoUser.about, avatar: infoUser.avatar })
+        userInfo.setId(infoUser._id)
+        console.log(infoUser._id)
         section.renderItems(infoCard.reverse())
     })
     .catch((error => console.error(`Не получилось загрузить данные ${error}`)))

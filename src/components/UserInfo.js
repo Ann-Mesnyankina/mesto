@@ -17,4 +17,10 @@ export class UserInfo {
             proffesion: this._profileAbout.textContent
         }
     }
+    setId(id){
+        this._id = id;
+    }
+    getId(){
+        return this._id;
+    }
 }

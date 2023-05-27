@@ -14,7 +14,4 @@ export class PopupRemoveCard extends Popup {
     setSubmit(submitForm){
         this._submitForm = submitForm
     }
-    open = () => {
-        super.open()
-     }
 }

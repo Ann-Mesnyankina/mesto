@@ -1,5 +1,5 @@
 export class Card {
-    constructor(item, templateSelector, openImage, openPopupRemove, modifyLike) {
+    constructor(item, templateSelector, openImage, openPopupRemove, modifyLike, isLiked) {
         this._item = item;
         this._link = item.link;
         this._name = item.name;
@@ -12,6 +12,7 @@ export class Card {
         this._openImage = openImage;
         this._openPopupRemove = openPopupRemove;
         this._modifyLike = modifyLike;
+        this._isLiked = false;
     }
 
     _getTemplate() {
@@ -33,6 +34,7 @@ export class Card {
         this._nameCard.textContent = this._name;
         this._linkCard.src = this._link;
         this._linkCard.alt = this._name;
+        this._counterLike.textContent = this._likesLength;
         this._checkRemoveTrash();
         this._checkIsLike();
         this._setEventListeners();
@@ -44,7 +46,8 @@ export class Card {
     }
 
     _handleLikeClick = () => {
-        this._modifyLike(this._likebuttonCard, this._cardId)
+        this._modifyLike(this._isLiked, this._cardId);
+        console.log(this._isLiked) 
     }
 
     _handleOpenImage = () => {
@@ -55,15 +58,15 @@ export class Card {
         this._element.remove();
         this._element = null;
     }
-
-    _checkIsLike = () => {
+    
+     _checkIsLike = () => {
         const checkMyId = this._likes.some(user => user._id === this._myId)
         if (checkMyId) {
             this._likebuttonCard.classList.add('element__like-button_active')
+            this._isLiked = true;
         }
         this._counterLike.textContent = this._likesLength;
     }
-
     _checkRemoveTrash = () => {
         if (this._ownerId !== this._myId) {
             this._buttonTrashCard.remove();
@@ -81,4 +84,3 @@ export class Card {
         this._linkCard.addEventListener('click', this._handleOpenImage);
     }
 }
-
