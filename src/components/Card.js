@@ -1,5 +1,5 @@
 export class Card {
-    constructor(item, templateSelector, openImage, openPopupRemove, modifyLike, isLiked) {
+    constructor(item, templateSelector, openImage, openPopupRemove, modifyLike) {
         this._item = item;
         this._link = item.link;
         this._name = item.name;
@@ -12,7 +12,6 @@ export class Card {
         this._openImage = openImage;
         this._openPopupRemove = openPopupRemove;
         this._modifyLike = modifyLike;
-        this._isLiked = false;
     }
 
     _getTemplate() {
@@ -46,8 +45,8 @@ export class Card {
     }
 
     _handleLikeClick = () => {
-        this._modifyLike(this._isLiked, this._cardId);
-        console.log(this._isLiked) 
+        this._modifyLike(this._cardId)
+
     }
 
     _handleOpenImage = () => {
@@ -58,24 +57,30 @@ export class Card {
         this._element.remove();
         this._element = null;
     }
-    
-     _checkIsLike = () => {
-        const checkMyId = this._likes.some(user => user._id === this._myId)
-        if (checkMyId) {
-            this._likebuttonCard.classList.add('element__like-button_active')
-            this._isLiked = true;
-        }
-        this._counterLike.textContent = this._likesLength;
+
+    setLikes(likes) {
+        this._likes = likes
+        this._likebuttonCard.classList.toggle('element__like-button_active');
+        this._counterLike.textContent = likes.length;
     }
+
     _checkRemoveTrash = () => {
         if (this._ownerId !== this._myId) {
             this._buttonTrashCard.remove();
         }
     }
 
-    setLikes = (likes) => {
-        this._likebuttonCard.classList.toggle('element__like-button_active');
-        this._counterLike.textContent = likes.length;
+    findMyLikes() {
+        return this._likes.some(user => user._id === this._myId)
+    }
+
+    _checkIsLike() {
+        this._likes.forEach(item => {
+            if (item._id === this._myId) {
+                this._likebuttonCard.classList.add('element__like-button_active')
+                return
+            }
+        })
     }
 
     _setEventListeners() {
@@ -84,3 +89,4 @@ export class Card {
         this._linkCard.addEventListener('click', this._handleOpenImage);
     }
 }
+

@@ -27,7 +27,6 @@ import {
     popupDeleteSelector
 } from '../utils/constants.js';
 
-//let userId;
 
 /*Экземпляры*/
 const api = new Api({
@@ -58,28 +57,25 @@ function creatCard(data) {
                     popupRemoveCard.close()
                 })
                 .catch((error => console.error(`Не получилось удалить карточку ${error}`)))
-        }
-        )
-    }, (isLiked, cardId) => {
-        if (!isLiked) { 
-            console.log(isLiked)           
-            api.addLike(cardId)
-                .then(res => {                    
+        })
+    }, (cardId) => {
+        const isLiked = card.findMyLikes();
+         if (!isLiked) {
+          api.addLike(cardId)
+                .then(res => {
                     card.setLikes(res.likes)
                 })
                 .catch((error => console.error(`Не получилось добавить лайк ${error}`)))
         } else {
-            api.deleteLike(cardId)
+         api.deleteLike(cardId)
                 .then(res => {
-                    console.log(res)
                     card.setLikes(res.likes)
                 })
                 .catch((error => console.error(`Не получилось удалить лайк ${error}`)))
-        }        
-    }); 
-    return card.generateCard(); 
+        }
+    })
+    return card.generateCard();
 }
-
 
 const section = new Section((item) => {
     section.addItem(creatCard(item))
@@ -158,7 +154,6 @@ Promise.all([api.getInitialCards(), api.getInfoUser()])
         infoCard.forEach(item => { item.myId = infoUser._id });
         userInfo.setUserInfo({ username: infoUser.name, proffesion: infoUser.about, avatar: infoUser.avatar })
         userInfo.setId(infoUser._id)
-        console.log(infoUser._id)
         section.renderItems(infoCard.reverse())
     })
     .catch((error => console.error(`Не получилось загрузить данные ${error}`)))
